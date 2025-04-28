@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Summary - Event Harmony</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Center the full page */
+    body.summary {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+  
+    .container {
+      text-align: center;
+      padding: 30px 20px;
+      width: 100%;
+      max-width: 1400px; /* Wider for big PC */
+    }
+  
+    .dashboard {
+      width: 100%;
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .dashboard iframe {
+      width: 95vw; /* 95% of the view width */
+      height: 85vh; /* 85% of view height */
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+  
+    /* Loader text */
+    #loader {
+      font-size: 1.5rem;
+      color: #0072ff;
+      margin-top: 20px;
+      animation: fadeIn 1.5s ease infinite alternate;
+    }
+  
+    /* Balloons - same */
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      width: 50px;
+      height: 70px;
+      background: radial-gradient(circle at 30% 30%, #ff7e5f, #feb47b);
+      border-radius: 50%;
+      animation: floatBalloon 10s infinite ease-in;
+      opacity: 0.8;
+    }
+  
+    .balloon:nth-child(1) { left: 20%; animation-delay: 0s; }
+    .balloon:nth-child(2) { left: 40%; animation-delay: 2s; }
+    .balloon:nth-child(3) { left: 60%; animation-delay: 4s; }
+    .balloon:nth-child(4) { left: 80%; animation-delay: 6s; }
+  
+    @keyframes floatBalloon {
+      0% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-500px) translateX(-30px); }
+      100% { transform: translateY(-1000px) translateX(30px); }
+    }
+  
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+  <style>
+    /* Top Buttons Layout */
+    .top-buttons {
+      position: fixed;
+      top: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 1000;
+    }
+    
+    /* Style for both buttons */
+    .top-buttons button {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .top-buttons button:hover {
+      background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    </style>
+    
+</head>
+
+<body class="summary">
+
+  <!-- Balloons floating -->
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="top-buttons">
+    <button onclick="downloadDashboard()">📥 Download Dashboard</button>
+    <button onclick="logout()">🚪 Logout</button>
+  </div>
+    <div class="container animated">
+    <h1>📈 Event Insights Summary</h1>
+    <p>
+      🚀 Strong ticket sales this quarter with peaks during weekends.<br>
+      💬 Attendee feedback highlights great satisfaction.<br>
+      🛠️ Suggested improvements: faster check-ins, better venue accessibility.
+    </p>
+
+    <div id="loader">Loading Dashboard...</div>
+
+    <div class="dashboard">
+      <iframe id="dashboardFrame"
+        src="https://us1.ca.analytics.ibm.com/bi/?perspective=dashboard&amp;pathRef=.my_folders%2FProject%2Bdashboard&amp;closeWindowOnLastView=true&amp;ui_appbar=false&amp;ui_navbar=false&amp;shareMode=embedded&amp;action=view&amp;mode=dashboard&amp;subView=model00000195a883c158_00000003"
+        frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    function hideLoader() {
+      document.getElementById('loader').style.display = 'none';
+    }
+    document.getElementById('dashboardFrame').onload = hideLoader;
+  </script>
+  <script>
+    // Logout function
+    function logout() {
+      window.location.href = "login.html"; // redirect back to login page
+    }
+  
+    // Download function (basic print/download PDF)
+    function downloadDashboard() {
+      const iframe = document.getElementById('dashboardFrame');
+      iframe.contentWindow.print(); // triggers the browser's print (user can save as PDF)
+    }
+  
+    function hideLoader() {
+      document.getElementById('loader').style.display = 'none';
+    }
+    document.getElementById('dashboardFrame').onload = hideLoader;
+  </script>
+  
+
+</body>
+</html>

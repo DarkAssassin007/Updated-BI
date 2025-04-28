@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - Event Harmony</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login">
+  <div class="login-container animated">
+    <h1>Login</h1>
+    <form id="loginForm" onsubmit="return validateLogin()">
+      <input type="text" id="username" placeholder="Username" required><br>
+      <input type="password" id="password" placeholder="Password" required><br>
+      <div class="show-password">
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    <p id="errorMessage" class="error"></p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
